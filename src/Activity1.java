@@ -5,6 +5,10 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         thingie.printPretty();
         thingie.shuffle();
         thingie.printPretty();
+        thingie.selectionSort();
+        thingie.printPretty();
+        thingie.selectionSort(true);
+        thingie.printPretty();
     }
 
     @Override
@@ -33,10 +37,43 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         throw new UnsupportedOperationException("Unimplemented method 'insertionSort'");
     }
 
+    void selectionSort(boolean highToLow){
+        if(!highToLow){
+            selectionSort();
+            return;
+        }
+        // outer loop - STOP ONE EARLY SO INNER DOESN'T GO OVER
+        for(int outer = 0; outer < nums.length - 1; outer++){
+            // find the smallest
+            int largestIndex = outer;
+            // inner loop to search for smallest
+            for(int inner = outer + 1; inner < nums.length; inner++){
+                if(nums[inner] > nums[largestIndex]) largestIndex = inner;
+            }
+            // three part swap outer loop with smallest
+                int temp = nums[largestIndex];
+                nums[largestIndex] = nums[outer];
+                nums[outer] = temp;
+        }
+        
+    }
+
     @Override
     void selectionSort() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectionSort'");
+        // outer loop - STOP ONE EARLY SO INNER DOESN'T GO OVER
+        for(int outer = 0; outer < nums.length - 1; outer++){
+            // find the smallest
+            int smallestIndex = outer;
+            // inner loop to search for smallest
+            for(int inner = outer + 1; inner < nums.length; inner++){
+                if(nums[inner] < nums[smallestIndex]) smallestIndex = inner;
+            }
+            // three part swap outer loop with smallest
+                int temp = nums[smallestIndex];
+                nums[smallestIndex] = nums[outer];
+                nums[outer] = temp;
+        }
+            
     }
 
     @Override
