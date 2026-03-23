@@ -9,6 +9,10 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         thingie.printPretty();
         thingie.selectionSort(true);
         thingie.printPretty();
+        thingie.insertionSort();
+        thingie.printPretty();
+        thingie.insertionSort(true);
+        thingie.printPretty();
     }
 
     @Override
@@ -31,10 +35,39 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         }
     }
 
+    void insertionSort(boolean highToLow){
+        if(!highToLow){
+            insertionSort();
+            return;
+        }
+        //outer loop
+        for(int j = 1; j < nums.length; j++){
+            //inner loop: while loop that goes backwards
+            int temp = nums[j];
+            int i = j - 1;
+            while((i > -1) && (nums[i] < temp)){
+                //shift over
+                nums[i + 1] = nums[i]; //drag out three-part-swap
+                i--;
+            }
+            nums[i + 1] = temp; //complete three-part-swap
+        }         
+    }
+
     @Override
     void insertionSort() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertionSort'");
+        //outer loop
+        for(int j = 1; j < nums.length; j++){
+            //inner loop: while loop that goes backwards
+            int temp = nums[j];
+            int i = j - 1;
+            while((i > -1) && (nums[i] > temp)){
+                //shift over
+                nums[i + 1] = nums[i]; //drag out three-part-swap
+                i--;
+            }
+            nums[i + 1] = temp; //complete three-part-swap
+        }         
     }
 
     void selectionSort(boolean highToLow){
@@ -44,7 +77,7 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         }
         // outer loop - STOP ONE EARLY SO INNER DOESN'T GO OVER
         for(int outer = 0; outer < nums.length - 1; outer++){
-            // find the smallest
+            // find the largest
             int largestIndex = outer;
             // inner loop to search for smallest
             for(int inner = outer + 1; inner < nums.length; inner++){
