@@ -121,6 +121,26 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         throw new UnsupportedOperationException("Unimplemented method 'pickRandom'");
     }
 
+    int binarySearch(int something){
+        //start in the middle
+        int low = 0;
+        int high = nums.length - 1;
+
+        while(low <= high){
+            int middle = nums.length / 2;
+            if(nums[middle] == something) return middle;
+            else if(nums[middle] > something){
+                high = middle - 1;
+            } else if(nums[middle] < something){
+                low = middle + 1;
+            }
+
+        }
+
+        //if we don't find what we need
+        return -1;
+    }
+
     public void printPretty() {
         final String RESET = "\u001B[0m";
         final String CYAN = "\u001B[96m";
