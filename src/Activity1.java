@@ -116,9 +116,9 @@ public class Activity1 extends IntegerManager implements PrintPretty {
     }
 
     @Override
-    int pickRandom() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pickRandom'");
+    int pickRandom(){
+        int randomIndex = (int)(Math.random() * nums.length);
+        return randomIndex;
     }
 
     int binarySearch(int something){
