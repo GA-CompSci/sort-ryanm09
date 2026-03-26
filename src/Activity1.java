@@ -56,6 +56,7 @@ public class Activity1 extends IntegerManager implements PrintPretty {
 
     @Override
     void insertionSort() {
+        //verbose sort - extra outputs
         //outer loop
         for(int j = 1; j < nums.length; j++){
             //inner loop: while loop that goes backwards
@@ -67,6 +68,8 @@ public class Activity1 extends IntegerManager implements PrintPretty {
                 i--;
             }
             nums[i + 1] = temp; //complete three-part-swap
+            System.out.println("\n PASS # " + j);
+            printPretty();
         }         
     }
 
@@ -107,12 +110,6 @@ public class Activity1 extends IntegerManager implements PrintPretty {
                 nums[outer] = temp;
         }
             
-    }
-
-    @Override
-    void mergeSort() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mergeSort'");
     }
 
     @Override
