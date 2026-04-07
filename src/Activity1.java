@@ -5,14 +5,16 @@ public class Activity1 extends IntegerManager implements PrintPretty {
         thingie.printPretty();
         thingie.shuffle();
         thingie.printPretty();
-        thingie.selectionSort();
-        thingie.printPretty();
-        thingie.selectionSort(true);
-        thingie.printPretty();
-        thingie.insertionSort();
-        thingie.printPretty();
-        thingie.insertionSort(true);
-        thingie.printPretty();
+      //  thingie.selectionSort();
+      //  thingie.printPretty();
+      //  thingie.selectionSort(true);
+      //  thingie.printPretty();
+      //  thingie.insertionSort();
+      //  thingie.printPretty();
+      //  thingie.insertionSort(true);
+      // thingie.printPretty();
+      //  thingie.mergeSort(thingie.nums);
+      //  thingie.printPretty();
     }
 
     @Override
@@ -110,6 +112,48 @@ public class Activity1 extends IntegerManager implements PrintPretty {
                 nums[outer] = temp;
         }
             
+    }
+
+    void merge(int[] nums, int[] l, int[] r, int leftEnd, int rightEnd){
+        //need a bunch of counters
+        int i = 0, j = 0, k = 0;
+        while(i < leftEnd && j < rightEnd){
+            if(l[i] <= r[j]){
+                nums[k++] = l[i++];
+            } else {
+                nums[k++] = r[j++];
+            }
+        }
+        //there's only left remaining
+        while(i < leftEnd){
+            nums[k++] = l[i++];
+        }
+        //there's only right remaining
+        while(j < rightEnd){
+            nums[k++] = r[j++];
+        }
+    }
+
+    void mergeSort(int[] nums){
+        // base case
+        int n = nums.length;
+        if(n <= 1) return;
+        //split in half
+        int mid = n / 2;
+        int[] l = new int[mid];
+        int[] r = new int[n - mid];
+        for(int i = 0; i < mid; i++){
+            l[i] = nums[i];
+        }
+        for(int i = mid; i < n; i++){
+            //subtracting mid to offset
+            r[i- mid] = nums[i];
+        }
+        mergeSort(l);
+        mergeSort(r);
+
+        //you can't get to this next line until the base case hits
+        merge(nums, l, r, mid, n - mid);
     }
 
     @Override

@@ -18,4 +18,6 @@ abstract class IntegerManager {
 
     /** Returns a random integer from the nums list */
     abstract int pickRandom();
+
+    abstract void mergeSort(int[] nums);
 }
